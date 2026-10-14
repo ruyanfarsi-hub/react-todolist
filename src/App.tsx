@@ -45,6 +45,15 @@ export default function App() {
     );
   }
 
+  function editTask(taskId: number, newTitle: string) {
+    setTasks((previousTasks) =>
+    previousTasks.map((task) =>
+    task.id === taskId
+  ? {...task, title: newTitle}
+: task)
+);
+  }
+
   const totalTasks = tasks.length;
 
   const completedTasks = tasks.filter(
@@ -100,6 +109,7 @@ export default function App() {
             tasks={tasks}
             onToggle={toggleTask}
             onDelete={deleteTask}
+            onEdit={editTask}
           />
         </section>
       </div>

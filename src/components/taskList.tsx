@@ -7,12 +7,14 @@ type TaskListProps = {
   tasks: Task[];
   onToggle: (id: number) => void;
   onDelete: (id: number) => void;
+  onEdit: (id: number, newTitle: string) => void;
 };
 
 export default function TaskList({
   tasks,
   onToggle,
   onDelete,
+  onEdit,
 }: TaskListProps) {
   if (tasks.length === 0) {
     return <EmptyState />;
@@ -26,6 +28,7 @@ export default function TaskList({
           task={task}
           onToggle={onToggle}
           onDelete={onDelete}
+          onEdit={onEdit}
         />
       ))}
     </ul>
