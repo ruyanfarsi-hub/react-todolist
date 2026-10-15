@@ -1,4 +1,4 @@
-
+import type { FormEvent } from "react";
 import Button from "./button";
 import TextInput from "./textInput";
 
@@ -13,14 +13,15 @@ export default function TaskForm({
   onTitleChange,
   onAddTask,
 }: TaskFormProps) {
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    onAddTask();
-  }
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  event.preventDefault();
+  onAddTask();
+}
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-3">
+    <form onSubmit={handleSubmit} className="flex items-cente gap-3 h-17">
       <TextInput
+        aria-label="New task"
         value={title}
         onChange={onTitleChange}
         placeholder="Add a new task..."

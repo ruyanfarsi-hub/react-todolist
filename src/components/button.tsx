@@ -4,7 +4,7 @@ type ButtonProps = {
 children: ReactNode;
 onClick?: () => void;
 type?: "button" | "submit";
-variant?: "primary" | "danger";
+variant?: "primary" | "secondary" | "danger" | "ghost" ; 
 disabled?: boolean;
 };
 
@@ -25,8 +25,10 @@ disabled = false,
   "disabled:cursor-not-allowed disabled:opacity-50";
 
 const variantStyles = {
-primary: "bg-blue-500 text-white hover:bg-blue-500",
+primary: "bg-blue-400 text-white hover:bg-blue-700", 
+secondary: "bg-gray-100 text-gray-700 hover:bg-gray-200",
 danger: "bg-red-50 text-red-600 hover:bg-red-100",
+ghost: "bg-transparent text-gray-600 hover:bg-gray-100",
 };
 
 return (

@@ -1,5 +1,4 @@
- 
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import type { Task } from "./types/task";
 
 import TaskForm from "./components/taskForm";
@@ -7,8 +6,26 @@ import TaskList from "./components/taskList";
 import TaskStats from "./components/taskStats";
 
 export default function App() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  
+const [tasks, setTasks] = useState<Task[]>(() => {
+  const savedTasks = localStorage.getItem("tasks");
+
+  if (savedTasks !== null) {
+    try {
+      return JSON.parse(savedTasks) as Task[];
+    } catch {
+      return [];
+    }
+  }
+
+  return [];
+});
+
   const [title, setTitle] = useState("");
+
+  useEffect(() => {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}, [tasks]);
 
   function addTask() {
     const trimmedTitle = title.trim();
